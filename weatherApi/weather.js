@@ -3,7 +3,7 @@ const input = document.querySelector('section.top-banner form input');
 const msg = document.querySelector('section.top-banner form .msg');
 const list = document.querySelector('section.ajax-section .cities');
 
-localStorage.setItem('apiKey', EncryptStringAES('3193209bec6117e66eba1a204c9d0701'));
+localStorage.setItem('apiKey', EncryptStringAES('APIKey'));
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
