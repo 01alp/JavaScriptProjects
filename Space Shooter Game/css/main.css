@@ -1,0 +1,281 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font: 16px sans-serif;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  text-align: center;
+  background: black;
+  color: #fd0000;
+  padding: 10px;
+}
+#topBar {
+  display: flex;
+  flex-direction: row;
+  background: black;
+  justify-content: space-between;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.fpsDisplay {
+  align-self: flex-end;
+}
+
+.score {
+  align-self: flex-start;
+}
+
+.timePassedSpan {
+  align-self: center;
+}
+
+.mapButtons {
+  display: flex;
+  flex-direction: row;
+  background: black;
+  justify-content: center;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.scoreBar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 70vh;
+  width: 15vw;
+  border: 2px white dotted;
+  position: absolute;
+  color: white;
+  padding: 10px;
+  margin-top: 100px;
+  margin-left: 30px;
+}
+
+footer {
+  padding: 10px;
+  text-align: center;
+  font-size: 11px;
+  background: black;
+  color: white;
+}
+
+.game-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+}
+
+.game .enemy {
+  position: absolute;
+  margin-left: -28px;
+  margin-top: -18px;
+  width: 56px;
+}
+
+.game .player {
+  position: absolute;
+  margin-left: -28px;
+  width: 56px;
+}
+
+.game .laser {
+  position: absolute;
+  margin-left: -2.5px;
+  height: 30px;
+}
+
+.game .enemy-laser {
+  position: absolute;
+  margin-left: -2.5px;
+  height: 30px;
+}
+
+.congratulations {
+  display: none;
+  position: absolute;
+  background: #c7a526;
+  color: white;
+  padding: 20px 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  animation: pop-in 1s;
+}
+
+.congratulations a {
+  text-decoration: none;
+}
+
+.game-over {
+  display: none;
+  position: absolute;
+  background: #6b1818;
+  color: white;
+  padding: 20px 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  animation: pop-in 1s;
+}
+
+.btn {
+  border: 2px solid #36bbf5;
+  border-radius: 3px;
+  box-shadow: 0 2px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(to bottom, #fff 0%, #fff 49%, #f5f5f5 50%, #eee 100%);
+  padding: 10px 40px;
+  font: 14px sans-serif;
+}
+.restartbtn {
+  border: 2px solid #ff1e00;
+  border-radius: 3px;
+  box-shadow: 0 2px rgba(0, 0, 0, 0.15);
+  background: rgb(59, 59, 59);
+  padding: 10px;
+  font: 12px sans-serif;
+  margin-bottom: 5px;
+  color: white;
+}
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translate(0, -100px);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0, 30px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.asteroidsContainer {
+  width: 800px;
+  height: 600px;
+  position: absolute;
+  overflow: hidden; /* Add this to hide overflowing elements */
+}
+
+.asto {
+  width: 48px;
+  height: 48px;
+  background: url(../img/asteroid.png);
+  position: absolute;
+  visibility: hidden;
+}
+
+.asteroidsContainer .asteroid1 {
+  left: 50px;
+  animation-fill-mode: forwards;
+  animation: astreoid 5s linear infinite;
+  animation-delay: 5s;
+}
+.asteroidsContainer .asteroid2 {
+  left: 400px;
+  animation-fill-mode: forwards;
+  animation: astreoid 6s linear infinite;
+  animation-delay: 2s;
+}
+
+.asteroidsContainer .asteroid3 {
+  left: 700px;
+  animation-fill-mode: forwards;
+  animation: astreoid 4s linear infinite;
+  animation-delay: 3s;
+}
+
+@keyframes astreoid {
+  from {
+    visibility: hidden;
+    transform: translateY(0) translateX(-50px);
+  }
+  to {
+    visibility: visible;
+    transform: translateY(560px) translateX(50px);
+  }
+}
+
+/* .scroll {
+  width: 100%;
+  height: 600px;
+  background: url(../img/scroll.png);
+  position: absolute;
+  animation-fill-mode: forwards;
+  animation: scroll 10s linear infinite;
+  opacity: 70%;
+  visibility: hidden;
+}
+.scroll2 {
+  width: 100%;
+  height: 600px;
+  background: url(../img/scroll2.png);
+  position: absolute;
+  animation-fill-mode: forwards;
+  animation: scroll 10s linear infinite;
+  animation-delay: 5s;
+  opacity: 70%;
+  visibility: hidden;
+  top: 0;
+} */
+@keyframes scroll {
+  from {
+    visibility: hidden;
+    transform: translateY(0);
+    opacity: 10%;
+  }
+  to {
+    visibility: visible;
+    transform: translateY(600px);
+    opacity: 70%;
+  }
+}
+
+.paused {
+  animation-play-state: paused;
+}
+.hidden {
+  opacity: 0;
+}
+
+.row {
+  height: 100px;
+}
+
+.row img {
+  width: 100px;
+  height: 100px;
+}
+
+.mapsContainer {
+  position: absolute;
+  display: flexbox;
+  width: 800px;
+  height: 600px;
+  z-index: 0; /* Add this line to set a lower z-index for the map elements */
+}
+.game {
+  width: 800px;
+  height: 600px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden; /* Add this to hide overflowing background */
+}

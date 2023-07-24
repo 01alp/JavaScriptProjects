@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="../img/asteroid.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>Space Game</header>
+        <div id="topBar">
+            <span class="score">Score: 0</span>
+            <span class="hearts">
+                <span>Life: </span>
+                <img src="./img/hearts.png" alt="" class="heart">
+                <img src="./img/hearts.png" alt="" class="heart">
+                <img src="./img/hearts.png" alt="" class="heart">
+            </span>
+            <span class="timePassedSpan">Time: 0</span>
+            <button class="restartbtn" onclick="window.location.reload()">Restart Game</button>
+            <a class="restartbtn" href="home.html">Home</a>
+            <span class="fpsDisplay">FPS: 0</span>
+        </div>
+        <div class="game-wrapper">
+            <div class="game">
+                <div class="mapsContainer"></div>
+                <div class="asteroidsContainer">
+                    <div class="asto asteroid1"></div>
+                    <div class="asto asteroid2"></div>
+                    <div class="asto asteroid3"></div>
+                    <div class="scroll"></div>
+                    <div class="scroll2"></div>
+                </div>
+            </div>
+            <div class="congratulations">
+                <h1>Congratulations!</h1>
+                <h2>You passed the pilot test!</h2>
+                <a class="btn" href="/nextlevel.html">Continue</a>
+            </div>
+            <div class="game-over">
+                <h1>GAME OVER</h1>
+                <h2>You lost the game</h2>
+                <button class="btn" onclick="window.location.reload()">Restart</button>
+            </div>
+        </div>
+        <footer>Left/right/up/dow n keys to move, Space to shoot. "P" Pause/Continue</footer>
+        <div class="mapButtons">
+            <button class="restartbtn" onclick="changeMap(0)">Map 1</button>
+            <button class="restartbtn" onclick="changeMap(1)">Map 2</button>
+            <button class="restartbtn" onclick="changeMap(2)">Map 3</button>
+        </div>
+        <div class="scoreBar">
+            <h1>Top Scores:</h1>
+            <p class="topScoredUsers"></p>
+        </div>
+    </div>
+    <script src="js/game.js"></script>
+    <script>
+        let fps = 0;
+        let frameCount = 0;
+        let lastTime = performance.now();
+        const fpsBuffer = [];
+
+        function updateFPS() {
+            const now = performance.now();
+            const deltaTime = now - lastTime;
+            lastTime = now;
+            const currentFPS = Math.round(1000 / deltaTime);
+            fpsBuffer.push(currentFPS);
+            frameCount++;
+
+            if (frameCount >= 60) {
+                // Calculate average FPS over the last 60 frames
+                let sum = fpsBuffer.reduce((acc, val) => acc + val, 0);
+                fps = Math.round(sum / fpsBuffer.length);
+                fpsBuffer.length = 0; // Clear the buffer
+                frameCount = 0;
+            }
+
+            // Update the FPS display on each frame
+            document.querySelector('.fpsDisplay').innerText = 'FPS: ' + fps;
+
+            requestAnimationFrame(updateFPS);
+        }
+
+        // Start the FPS calculation loop
+        updateFPS();
+        function changeMap(mapIndex) {
+            // Retrieve the configuration for the selected map
+            const config = mapConfigurations[mapIndex];
+
+            // Update the global game states using the selected map's configurations
+            PLAYER_MAX_SPEED = config.PLAYER_MAX_SPEED;
+            LASER_MAX_SPEED = config.LASER_MAX_SPEED;
+            LASER_COOLDOWN = config.LASER_COOLDOWN;
+            ENEMY_COOLDOWN = config.ENEMY_COOLDOWN;
+
+            // Generate the new map using the selected map's data
+            generateMap(maps[mapIndex]);
+        }
+
+        // Call the generateMap function initially with the first map
+        generateMap(maps[0]);
+    </script>
+</body>
+
+</html>
