@@ -13,7 +13,9 @@ of information you start to remember all the [60 FPS memes](https://pics.me.me/6
 ### Objectives
 
 Main game ✅
+
 History ✅
+
 Different Maps ✅
 
 Watching intro video Sound on is recommended!
