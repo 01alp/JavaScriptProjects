@@ -16,6 +16,8 @@ Main game ✅
 History ✅
 Different Maps ✅
 
+Watching intro video Sound on is recommended!
+
 In a world where AI and machine learning had reshaped society, the Code Defenders emerged as a beacon of hope. The story began with the rise of these skilled programmers turned space pilots, who harnessed their gaming expertise to combat the alien invasion threatening Earth.
 
 Their journey began in the training phase, where the Code Defenders honed their abilities by eliminating enemies and preparing for the main game( You have 3 Lifes!). As they progressed through the challenges on second level, they discovered hidden opportunities on map 2 and map 3, offering double points, fueling their desire to excel.(Main game you have 1 life only) You can choose any of the 3 maps any time as you like.
