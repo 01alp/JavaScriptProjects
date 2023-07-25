@@ -73,8 +73,8 @@ const mapConfigurations = [
   {
     ENEMY_COOLDOWN: 12, // Adjust the values for map 3
     LASER_COOLDOWN: 0.9,
-    LASER_MAX_SPEED: 60,
-    PLAYER_MAX_SPEED: 60,
+    LASER_MAX_SPEED: 50,
+    PLAYER_MAX_SPEED: 120,
   },
 ];
 
