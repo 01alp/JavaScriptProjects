@@ -40,6 +40,7 @@ Instructions:
     Firing Lasers: Your spaceship is equipped with powerful lasers. Press the spacebar (or any designated firing key) to shoot lasers and obliterate the incoming enemy ships. Aim carefully and time your shots well to maximize your chances of hitting the targets.
 
     "P" key Pauses and resumes game!
+    You can change current map by clicking buttons Map1, Map2, Map3 at the bottom of the game window.
 
     Defeat the Alien Fleet: The alien fleet consists of several waves of ships. As you progress, the alien ships will move faster and deploy more aggressive tactics. Destroy them all to advance to the next level.
 
