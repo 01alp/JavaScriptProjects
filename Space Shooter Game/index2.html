@@ -37,7 +37,7 @@
             <div class="congratulations">
                 <h1>Congratulations!</h1>
                 <h2>You Saved the world!</h2>
-                <a class="btn" href="/final.html">Continue</a>
+                <a class="btn" href="./final.html">Continue</a>
             </div>
             <div class="game-over">
                 <h1>GAME OVER</h1>
@@ -87,22 +87,6 @@
 
         // Start the FPS calculation loop
         updateFPS();
-        function changeMap(mapIndex) {
-            // Retrieve the configuration for the selected map
-            const config = mapConfigurations[mapIndex];
-
-            // Update the global game states using the selected map's configurations
-            PLAYER_MAX_SPEED = config.PLAYER_MAX_SPEED;
-            LASER_MAX_SPEED = config.LASER_MAX_SPEED;
-            LASER_COOLDOWN = config.LASER_COOLDOWN;
-            ENEMY_COOLDOWN = config.ENEMY_COOLDOWN;
-
-            // Generate the new map using the selected map's data
-            generateMap(maps[mapIndex]);
-        }
-
-        // Call the generateMap function initially with the first map
-        generateMap(maps[0]);
     </script>
 </body>
 

@@ -24,10 +24,10 @@ const ENEMY_VELOCITY_Y = 20;
 let timePassed = 0;
 
 const tiles = {
-  1: '../img/s4.gif',
-  2: '../img/s7.gif',
-  3: '../img/s3.png',
-  4: '../img/4.gif',
+  1: './img/s4.gif',
+  2: './img/s7.gif',
+  3: './img/s3.png',
+  4: './img/4.gif',
 };
 
 const maps = [
@@ -65,9 +65,9 @@ const mapConfigurations = [
     PLAYER_MAX_SPEED: 300,
   },
   {
-    ENEMY_COOLDOWN: 2, // Adjust the values for map 2
-    LASER_COOLDOWN: 0.6,
-    LASER_MAX_SPEED: 150,
+    ENEMY_COOLDOWN: 3, // Adjust the values for map 2
+    LASER_COOLDOWN: 0.3,
+    LASER_MAX_SPEED: 200,
     PLAYER_MAX_SPEED: 500,
   },
   {
@@ -93,8 +93,9 @@ const GAME_STATE = {
   enemyLasers: [],
   isPaused: false,
   gameOver: false,
-  score: 30000,
+  score: 3000,
   lives: 1,
+  currentMapIndex: 0, // Add a property to keep track of the current map index
 };
 
 function generateMap(map) {
@@ -114,6 +115,26 @@ function generateMap(map) {
     game.appendChild(rowElem);
   });
 }
+
+function changeMap(mapIndex) {
+  // Retrieve the configuration for the selected map
+  const config = mapConfigurations[mapIndex];
+
+  // Update the global game states using the selected map's configurations
+  PLAYER_MAX_SPEED = config.PLAYER_MAX_SPEED;
+  LASER_MAX_SPEED = config.LASER_MAX_SPEED;
+  LASER_COOLDOWN = config.LASER_COOLDOWN;
+  ENEMY_COOLDOWN = config.ENEMY_COOLDOWN;
+
+  // Update the currentMapIndex
+  GAME_STATE.currentMapIndex = mapIndex;
+
+  // Generate the new map using the selected map's data
+  generateMap(maps[mapIndex]);
+}
+
+// Call the generateMap function initially with the first map
+generateMap(maps[0]);
 
 function rectsIntersect(r1, r2) {
   return !(r2.left > r1.right || r2.right < r1.left || r2.top > r1.bottom || r2.bottom < r1.top);
@@ -143,9 +164,9 @@ function createPlayer($container) {
   GAME_STATE.playerX = GAME_WIDTH / 2;
   GAME_STATE.playerY = GAME_HEIGHT - 50;
   GAME_STATE.spaceshipImages = [
-    '../img/left.png', // Left movement image
-    '../img/pRed.png', // Neutral image
-    '../img/right.png', // Right movement image
+    './img/left.png', // Left movement image
+    './img/pRed.png', // Neutral image
+    './img/right.png', // Right movement image
   ];
   GAME_STATE.currentImageIndex = 1; // Start with the neutral image
   const $player = document.createElement('img');
@@ -166,7 +187,7 @@ function destroyPlayer($container, player) {
     // Player has no lives left, game over
     $container.removeChild(player);
     GAME_STATE.gameOver = true;
-    const audio = new Audio('../sound/sfx-lose.ogg');
+    const audio = new Audio('./sound/sfx-lose.ogg');
     audio.play();
   }
 }
@@ -219,12 +240,12 @@ function updatePlayer(dt, $container) {
 
 function createLaser($container, x, y) {
   const $element = document.createElement('img');
-  $element.src = '../img/bullet.png';
+  $element.src = './img/bullet.png';
   $element.className = 'laser';
   $container.appendChild($element);
   const laser = { x, y, $element };
   GAME_STATE.lasers.push(laser);
-  const audio = new Audio('../sound/sfx-laser1.ogg');
+  const audio = new Audio('./sound/sfx-laser1.ogg');
   audio.play();
   setPosition($element, x, y);
 }
@@ -262,7 +283,7 @@ function destroyLaser($container, laser) {
 
 function createEnemy($container, x, y) {
   const $element = document.createElement('img');
-  $element.src = '../img/en1.png';
+  $element.src = './img/en1.png';
   $element.className = 'enemy';
   $container.appendChild($element);
   const enemy = {
@@ -278,12 +299,16 @@ function createEnemy($container, x, y) {
 function destroyEnemy($container, enemy) {
   $container.removeChild(enemy.$element);
   enemy.isDead = true;
-  GAME_STATE.score += 100;
+  // Get the current map configuration based on the currentMapIndex
+  const currentMapConfig = mapConfigurations[GAME_STATE.currentMapIndex];
+
+  // Add 100 points to the score if the current map index is 0 (first map), otherwise add 200 points (2 times more)
+  GAME_STATE.score += GAME_STATE.currentMapIndex === 0 ? 100 : 200;
 }
 
 function createEnemyLaser($container, x, y) {
   const $element = document.createElement('img');
-  $element.src = '../img/blaser.png';
+  $element.src = './img/blaser.png';
   $element.className = 'enemy-laser';
   $container.appendChild($element);
   const laser = { x, y, $element };
@@ -307,7 +332,7 @@ function updateEnemyLasers(dt, $container) {
       // Player was hit
       destroyPlayer($container, player);
       destroyLaser($container, laser);
-      const audio = new Audio('../sound/hit.ogg');
+      const audio = new Audio('./sound/hit.ogg');
       audio.play();
       break;
     }
