@@ -1,4 +1,4 @@
-## make-your-game
+- ## make-your-game
 
 With the passing of time and evolution of technology, the human brain has been requesting
 more and more stimuli to keep the brain occupied. Boredom happens whenever
@@ -10,7 +10,7 @@ Your game will be single player only and you will have to create your
 own engine and tools for the game. And as you try to search for all sorts
 of information you start to remember all the [60 FPS memes](https://pics.me.me/60-fps-59-fps-35518800.png).
 
-### Objectives
+- ## Objectives
 
 Main game ✅
 
@@ -19,6 +19,9 @@ History ✅
 Different Maps ✅
 
 Watching intro video Sound on is recommended!
+
+- Just start from home.html open with live Server Vs code extension recommended.
+- Or run main.go and ctrl+click on console: "Server listening on http://localhost:8080/home.html"
 
 In a world where AI and machine learning had reshaped society, the Code Defenders emerged as a beacon of hope. The story began with the rise of these skilled programmers turned space pilots, who harnessed their gaming expertise to combat the alien invasion threatening Earth.
 
@@ -30,7 +33,7 @@ As players completed the game, they had the opportunity to register the name of 
 
 Score Handling
 
-### Space Invaders Game Description:
+- ## Space Invaders Game Description:
 
 Welcome to Space Invaders, a classic arcade-style game where you take on the role of a fearless space pilot defending your base from an invading fleet of alien ships. Your mission is to destroy all enemy ships before they reach and destroy your base. But beware, it won't be an easy task! The alien fleet is relentless, and their firepower is deadly.
 Instructions:
